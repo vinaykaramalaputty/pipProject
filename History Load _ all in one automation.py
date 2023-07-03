@@ -1,7 +1,8 @@
 # Databricks notebook source
 # DBTITLE 1,Import
+import dbutils as dbutils
+from pyspark.pandas import spark
 from pyspark.sql.functions import col
-from datetime import datetime
 
 # COMMAND ----------
 
@@ -55,6 +56,7 @@ print("Deleting the records from tbl .....")
 trgt_path = []
 for i in range(c2):
         trgt_path.append(l2[i][0])
+# noinspection PyRedundantParentheses
 for trgt_path in (trgt_path):
     temp_df = spark.sql(f"delete from delta.`{trgt_path}` where 1=1")
     print (trgt_path)
